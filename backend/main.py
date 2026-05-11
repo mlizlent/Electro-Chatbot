@@ -40,7 +40,7 @@ app.add_middleware(
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 
-# ─── Pydantic Schemas ────────────────────────────────────────────────────────
+#Pydantic Schemas
 
 class UserCreate(BaseModel):
     username: str
@@ -91,8 +91,7 @@ class ChatRequest(BaseModel):
     message: str
 
 
-# ─── Auth Routes ─────────────────────────────────────────────────────────────
-
+# Auth Routes 
 @app.post("/api/auth/register", response_model=UserResponse, status_code=201)
 def register(user_data: UserCreate, db: Session = Depends(get_db)):
     if auth.get_user_by_username(db, user_data.username):
@@ -134,7 +133,7 @@ def get_me(current_user: models.User = Depends(auth.get_current_user)):
     return current_user
 
 
-# ─── Conversation Routes ──────────────────────────────────────────────────────
+#  Conversation Routes 
 
 @app.get("/api/conversations", response_model=List[ConversationResponse])
 def get_conversations(
@@ -224,7 +223,7 @@ def get_messages(
     ]
 
 
-# ─── Chat Route ───────────────────────────────────────────────────────────────
+#  Chat Route
 
 @app.post("/api/chat")
 async def send_message(

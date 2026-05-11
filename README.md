@@ -1,16 +1,16 @@
 # ElectroBot — AI Electronics Engineering Assistant
 
-An AI-powered chatbot specialized in electronics, IoT, sensors, RF/wireless, cellular communication, and hardware engineering. Built with React + FastAPI + GPT-4o.
+An AI-powered chatbot specialized in electronics, IoT, sensors, RF/wireless, cellular communication, and hardware engineering. Built with React + FastAPI + Groq (Llama 3.1).
 
 ## Features
 
-- 🤖 **GPT-4o powered** — deep expertise in hardware engineering
-- 💬 **Chat history** — persistent conversations with memory
-- 🔌 **Circuit sketching** — AI generates and renders circuit diagrams as SVG
-- 🖼️ **Image upload** — upload circuit diagrams/schematics for GPT-4o vision analysis
-- 📝 **Markdown rendering** — formatted responses with syntax-highlighted code
-- 🔐 **User authentication** — JWT-based auth with registration/login
-- 🌙 **Dark theme** — electronics-inspired dark UI
+- **Groq Llama 3.1 powered** — fast, intelligent electronics expertise
+-  **Chat history** — persistent conversations with memory
+- **Animated circuits** — AI generates and renders interactive circuit diagrams with animations
+- **Multi-model image analysis** — upload circuit diagrams/schematics for detailed vision analysis
+- **Markdown rendering** — formatted responses with syntax-highlighted code
+- **User authentication** — JWT-based auth with registration/login
+- **Dark & light themes** — electronics-inspired UI with theme persistence
 
 ## Tech Stack
 
@@ -18,8 +18,8 @@ An AI-powered chatbot specialized in electronics, IoT, sensors, RF/wireless, cel
 |-------|-----------|
 | Frontend | React 18, Vite, TailwindCSS |
 | Backend | Python FastAPI, SQLAlchemy |
-| AI | OpenAI GPT-4o (chat + vision) |
-| Circuit rendering | schemdraw (SVG) |
+| AI | Groq API (Llama 3.1) + Multi-model vision |
+| Circuit rendering | Animated SVG with custom animations |
 | Database | SQLite |
 | Auth | JWT (python-jose) |
 
@@ -39,9 +39,9 @@ python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Set your OpenAI API key
+# Set your Groq API key
 cp .env.example .env
-# Edit .env and add your key: OPENAI_API_KEY=sk-...
+# Edit .env and add your key: GROQ_API_KEY=gsk_...
 
 # Start the backend
 uvicorn main:app --reload --port 8000
@@ -68,7 +68,7 @@ Ask ElectroBot to draw circuits using natural language:
 - *"Show me a voltage divider circuit"*
 - *"Draw an RC low-pass filter"*
 
-The AI will generate a circuit diagram rendered as an interactive SVG with zoom and download controls.
+The AI will generate an animated circuit diagram rendered as an interactive SVG with component labels, values, and current flow visualization.
 
 ## Image Upload
 
@@ -77,6 +77,8 @@ Upload circuit diagrams, schematics, or PCB layouts and ask:
 - *"What's wrong with this circuit?"*
 - *"Identify the components in this schematic"*
 - *"How can I improve this design?"*
+
+ElectroBot uses multi-model vision analysis to provide detailed descriptions, component detection, and object identification with confidence scores.
 
 ## Example Questions
 
@@ -105,12 +107,14 @@ Upload circuit diagrams, schematics, or PCB layouts and ask:
 ```
 electronics-chatbot/
 ├── backend/
-│   ├── main.py          # FastAPI app, all routes
-│   ├── auth.py          # JWT authentication
-│   ├── chat.py          # OpenAI integration
-│   ├── circuit.py       # Circuit rendering (schemdraw)
-│   ├── models.py        # SQLAlchemy models
-│   ├── database.py      # DB connection
+│   ├── main.py              # FastAPI app, all routes
+│   ├── auth.py              # JWT authentication
+│   ├── chat.py              # Groq API integration & vision
+│   ├── circuit.py           # Circuit SVG rendering
+│   ├── circuit_animator.py  # Animated circuit generator
+│   ├── components_db.py     # Component database
+│   ├── models.py            # SQLAlchemy models
+│   ├── database.py          # DB connection
 │   └── requirements.txt
 └── frontend/
     └── src/
@@ -119,12 +123,15 @@ electronics-chatbot/
         │   ├── Auth.jsx         # Login/Register
         │   ├── Chat.jsx         # Main chat interface
         │   ├── Message.jsx      # Message with markdown
-        │   ├── CircuitViewer.jsx # SVG circuit display
+        │   ├── CircuitViewer.jsx # Animated SVG display
         │   └── Sidebar.jsx      # Conversation list
         ├── context/
-        │   └── AuthContext.jsx
-        └── api/
-            └── client.js        # Axios instance
+        │   ├── AuthContext.jsx
+        │   └── ThemeContext.jsx
+        ├── api/
+        │   └── client.js        # Axios instance
+        ├── App.jsx              # Main app
+        └── index.css            # Global styles
 ```
 
 
