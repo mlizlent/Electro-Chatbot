@@ -279,7 +279,7 @@ The AI can now:
 - **Searchable**: By name, part number, specs, tags
 - **Indexed**: For fast lookups
 
-## API Endpoints (To Be Added)
+## API Endpoints 
 
 ```
 GET  /api/components              - List all components
