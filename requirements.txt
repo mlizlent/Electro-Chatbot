@@ -1,0 +1,3 @@
+# Root Python requirements for Electro-Chatbot
+# This delegates to the backend requirements file.
+-r backend/requirements.txt
