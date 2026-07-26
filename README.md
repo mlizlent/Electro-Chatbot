@@ -59,6 +59,19 @@ npm run dev
 
 Visit **http://localhost:5173**, register an account, and start chatting.
 
+## Docker
+
+You can run the full app with Docker Compose from the repo root.
+
+1. Create a `.env` file with at least your `GROQ_API_KEY`, `HF_API_KEY`, and `SECRET_KEY`.
+2. Start the app:
+
+```bash
+docker compose up --build
+```
+
+Open **http://localhost** after the containers start.
+
 ## Circuit Sketching
 
 Ask ElectroBot to draw circuits using natural language:
