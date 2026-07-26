@@ -7,7 +7,7 @@ COPY frontend/ .
 RUN npm run build
 
 # Build and run the backend app
-FROM python:3.14-slim
+FROM python:3.13-slim
 WORKDIR /app
 
 RUN apt-get update \
