@@ -14,10 +14,16 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr
 from dotenv import load_dotenv
 
-import models
-import auth
-import chat as chat_module
-from database import engine, get_db
+try:
+    from . import models
+    from . import auth
+    from . import chat as chat_module
+    from .database import engine, get_db
+except ImportError:
+    import models
+    import auth
+    import chat as chat_module
+    from database import engine, get_db
 
 load_dotenv()
 
